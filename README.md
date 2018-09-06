@@ -1,4 +1,12 @@
-# puris-boardgames
+# Puri's Boardgames 
+
+> Esta demo fue pensada con la idea de mostrar las principales funcionalidades de los componentes de vuetify. 
+
+## Dependencies 
+* vuetify 
+* vuex
+* vue-router 
+* axios
 
 ## Project setup
 ```
