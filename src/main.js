@@ -4,20 +4,15 @@ import './plugins/vuetify'
 import App from './App.vue'
 import Vuetify from 'vuetify'
 import router from './router'
+import store from './store/index'
 
-Vue.use(Vuetify, {
-  theme: {
-    primary: '#3f51b5',
-    secondary: '#b0bec5',
-    accent: '#8c9eff',
-    error: '#b71c1c'
-  }
-})
+Vue.use(Vuetify)
 
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

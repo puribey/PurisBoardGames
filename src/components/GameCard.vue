@@ -7,7 +7,7 @@
     >
         <v-img
         :aspect-ratio="16/9"
-        :src="card.src"
+        :src="gameProp.src"
         >
         <div class="flex-button">
         <v-btn icon @click="onFavorite()" color="white">
@@ -18,14 +18,14 @@
         </v-img>
         <v-card-title>
         <div>
-            <span class="headline">{{card.title}}</span>
-            <p class="subheading">Type: {{card.type}}</p>
+            <span class="headline">{{gameProp.title}}</span>
+            <p class="subheading">Type: {{gameProp.type}}</p>
         </div>
         </v-card-title>
         <v-card-actions>
           <div class="d-flex">
             <v-rating
-                :value="card.value"
+                :value="gameProp.value"
                 color="deep-purple lighten-2"
                 dense
                 half-increments
@@ -34,7 +34,7 @@
             ></v-rating>
             </div>
             <v-spacer></v-spacer>
-            <v-btn flat>More</v-btn>
+            <v-btn flat :to="'/gameDetail/' + gameProp.id">More</v-btn>
         </v-card-actions>
     </v-card>
 </v-hover>
@@ -44,7 +44,7 @@
 export default {
   name: "GameCard",
   props: {
-    card: Object
+    gameProp: Object
   },
   data() {
     return {

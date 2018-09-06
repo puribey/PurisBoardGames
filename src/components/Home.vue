@@ -33,9 +33,7 @@ export default {
 </script>
 
 <style scoped>
-
 .carousel__wrapper {
   height: 90vh;
 }
-
 </style>

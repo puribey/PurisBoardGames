@@ -1,6 +1,5 @@
 <template>
   <v-app :dark="isDark">
-    <!--<img alt="Vue logo" src="./assets/logo.png">-->
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -39,7 +38,12 @@
       <v-toolbar-title v-text="title"></v-toolbar-title>
     </v-toolbar>
     <v-content>
+      <v-slide-y-transition>
       <router-view></router-view>
+      </v-slide-y-transition>
+<!--  <v-slide-x-transition mode="out-in">
+        <router-view> </router-view>
+      </v-slide-x-transition> -->
     </v-content>
     <v-footer :fixed="fixed" app class="index100">
       <span class="pl-2">&copy; 2018 PuriBey</span>
