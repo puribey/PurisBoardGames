@@ -21,7 +21,7 @@
           class="mb-4 mt-3"
           size="40"
         ></v-rating>
-        <v-expansion-panel> <!-- add inset -->
+        <v-expansion-panel inset> <!-- add inset -->
           <v-expansion-panel-content
             v-for="(detail,i) in game.details"
             :key="i"

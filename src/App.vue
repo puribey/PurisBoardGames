@@ -20,9 +20,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar
-      app
-    >
+    <v-toolbar app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up"></v-toolbar-side-icon>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn
@@ -41,7 +39,7 @@
       <v-slide-y-transition>
       <router-view></router-view>
       </v-slide-y-transition>
-<!--  <v-slide-x-transition mode="out-in">
+ <!-- <v-slide-x-transition mode="out-in">
         <router-view> </router-view>
       </v-slide-x-transition> -->
     </v-content>
@@ -83,5 +81,4 @@ export default {
 .index100 {
   z-index: 100;
 }
-
 </style>

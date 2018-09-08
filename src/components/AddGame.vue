@@ -57,15 +57,13 @@
             <v-spacer></v-spacer>
             <v-btn color="deep-purple lighten-2" flat @click="handleClickModal()">Close</v-btn>
             <v-btn color="deep-purple lighten-2" flat @click.native="dialog = false" type="submit">Save</v-btn>
-            <v-btn color="deep-purple lighten-2" flat @click.native="dialog = false" type="submit">Reset</v-btn>
+            <v-btn color="deep-purple lighten-2" flat @click.native="dialog = false" type="reset">Reset</v-btn>
         </v-card-actions>
       </v-form>
     </v-card>
 </template>
 
 <script>
-// for validation
-import axios from "axios";
 
 export default {
   name: "AddGame",
@@ -82,7 +80,7 @@ export default {
       description: "",
       descriptionRules: [
         v => !!v || "Description is required",
-        v => (v && v.length >= 10) || 'Description must be more than 10 characters'
+        v => (v && v.length > 10) || 'Description must be more than 10 characters'
       ]
     };
   },
@@ -91,15 +89,7 @@ export default {
       this.$emit("onCloseModal");
     },
     submit() {
-      if (this.$refs.form.validate()) {
-        // Native form submission is not yet supported
-        axios.post("/api/submit", {
-          name: this.name,
-          email: this.email,
-          select: this.select,
-          checkbox: this.checkbox
-        });
-      }
+      
     },
     clear() {
       this.$refs.form.reset();
