@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import MyList from '@/components/MyList'
 import GameDetail from '@/components/GameDetail'
+import Favourites from '@/components/Favourites'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       component: GameDetail,
       props: true
     },
+    {
+      path: '/favourites',
+      name: 'Favourites',
+      component: Favourites,
+    }
   ],
   mode: 'history'
 })

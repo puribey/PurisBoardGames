@@ -66,6 +66,7 @@ export default {
       drawer: false,
       items: [
         { icon: "home", title: "Home", link: "/" },
+        { icon: "favorite", title: "Favourites", link: "/favourites"},
         { icon: "playlist_add_check", title: "My List", link: "/myList" }
       ],
       title: "Puri's Boardgames"
