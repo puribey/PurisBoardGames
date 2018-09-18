@@ -36,12 +36,12 @@
       <v-toolbar-title v-text="title"></v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <v-slide-y-transition>
+      <!--<v-slide-y-transition>
       <router-view></router-view>
-      </v-slide-y-transition>
- <!-- <v-slide-x-transition mode="out-in">
+      </v-slide-y-transition>-->
+      <v-slide-x-transition mode="out-in">
         <router-view> </router-view>
-      </v-slide-x-transition> -->
+      </v-slide-x-transition>
     </v-content>
     <v-footer :fixed="fixed" app class="index100">
       <span class="pl-2">&copy; 2018 PuriBey</span>
@@ -66,8 +66,8 @@ export default {
       drawer: false,
       items: [
         { icon: "home", title: "Home", link: "/" },
-        { icon: "favorite", title: "Favourites", link: "/favourites"},
-        { icon: "playlist_add_check", title: "My List", link: "/myList" }
+        { icon: "playlist_add_check", title: "My List", link: "/myList" },
+        { icon: "favorite", title: "Favourites", link: "/favourites"}
       ],
       title: "Puri's Boardgames"
     };

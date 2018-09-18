@@ -1,6 +1,6 @@
 <template>
     <v-card>
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="onCreateGameCard">
         <v-card-title>
             <span class="headline">New Game</span>
         </v-card-title>
@@ -11,6 +11,7 @@
                   <v-text-field 
                   v-model="title"
                   label="Title"
+                  id="title"
                   :rules="titleRules"
                   required
                   color="deep-purple lighten-2"
@@ -28,15 +29,26 @@
                     ]"
                     :rules="[v => !!v || 'Type is required']"
                     label="Type"
+                    id="type"
                     required
                     color="deep-purple lighten-2"
                   ></v-select>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field 
+                  v-model="src"
+                  label="Image URL"
+                  id="src"
+                  required
+                  color="deep-purple lighten-2"
+                  ></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-select
                     v-model="selectPoints"
                     :items="[1, 2, 3, 4, 5]"
                     label="Points"
+                    id="value"
                     required
                     color="deep-purple lighten-2"
                   ></v-select>
@@ -44,6 +56,7 @@
                 <v-flex xs12>
                    <v-text-field
                    v-model="description"
+                   id="description"
                    label="Descrption"
                    :rules="descriptionRules"
                    required
@@ -56,8 +69,8 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="deep-purple lighten-2" flat @click="handleClickModal()">Close</v-btn>
-            <v-btn color="deep-purple lighten-2" flat @click.native="dialog = false" type="submit">Save</v-btn>
-            <v-btn color="deep-purple lighten-2" flat @click.native="dialog = false" type="reset">Reset</v-btn>
+            <v-btn color="deep-purple lighten-2" flat @click="handleClickModal()" type="submit" :disabled="!formIsValid">Save</v-btn>
+            <v-btn color="deep-purple lighten-2" flat @click="handleClickModal()" type="reset">Reset</v-btn>
         </v-card-actions>
       </v-form>
     </v-card>
@@ -81,8 +94,14 @@ export default {
       descriptionRules: [
         v => !!v || "Description is required",
         v => (v && v.length > 10) || 'Description must be more than 10 characters'
-      ]
+      ],
+      src: ""
     };
+  },
+  computed:{
+    formIsValid(){
+      return this.title !== '' && this.description !== '' && this.src !== ''
+    }
   },
   methods: {
     handleClickModal() {
@@ -93,6 +112,16 @@ export default {
     },
     clear() {
       this.$refs.form.reset();
+    },
+    onCreateGameCard(){
+      const gameInfo = {
+        title: this.title,
+        type: this.selectType,
+        value: this.selectPoints,
+        description: this.description,
+        src: this.src
+      }
+      this.$store.dispatch("createGameCard", gameInfo)
     }
   }
 };
