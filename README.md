@@ -24,6 +24,9 @@
 - [ ] Crear la action que va a recibir toda la data del form 
 - [ ] Hacer el dispatch en el form con toda la data 
 
+## Info Extra
+* Diferencia entre [SDK y API](https://nordicapis.com/what-is-the-difference-between-an-api-and-an-sdk/)
+
 ## Project setup
 ```
 npm install
