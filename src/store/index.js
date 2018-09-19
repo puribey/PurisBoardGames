@@ -56,8 +56,6 @@ export default new Vuex.Store({
         .ref("games")
         .push(game)
         .then(data => {
-          /* eslint-disable */
-          console.log(data);
           key = data.key;
           return key
         })
@@ -67,16 +65,10 @@ export default new Vuex.Store({
           return firebase.storage().ref('games/' + key + '.' + extention).put(payload.image)
         })
         .then( fileData => {
-          //imageSRC = fileData.metadata.downloadURLs[0]
           return fileData.ref.getDownloadURL()
           .then( imageSRC => {
             return firebase.database().ref('games').child(key).update({src: imageSRC})
           })
-          /* eslint-disable */
-          // console.log(imageSRC)
-          //imageSRC = fileData.getDownloadURL()
-          // update my element in the database by creating that new property
-          //return firebase.database().ref('games').child(key).update({src: imageSRC})
         })
         .then(() => {
           commit("CREATE_GAMECARD", {
