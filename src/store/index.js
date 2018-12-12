@@ -27,18 +27,33 @@ export default new Vuex.Store({
         value: 5,
         type: "Worker Placement"
       }
+      ,
+      {
+        id: 3,
+        favourite: false,
+        title: "Abyss",
+        src:
+          "http://www.cephalofair.com/wp-content/uploads/2014/05/russian_railroads.jpg",
+        description: "In Russian Railroads, players compete in an exciting race to build the largest and most advanced railway network. In order to do so, the players appoint their workers to various important tasks. The development of simple tracks will quickly bring the players to important places, while the modernization of their railway network will improve the efficiency of their machinery. Newer locomotives cover greater distances and factories churn out improved technology. Engineers, when used effectively, can be the extra boost that an empire needs to race past the competition. There are many paths to victory: Who will ride into the future full steam ahead and who will be run off the rails? Whose empire will overcome the challenges ahead and emerge victorious?",
+        value: 5,
+        type: "Worker Placement"
+      }
     ],
     favouriteGames:[]
   },
   mutations: {
     ADD_REMOVE_FAVOURITE(state, payload){
-      const updatedFavourite = state.gameList.map( (game, index) => {
+      const updatedFavourite = state.gameList.map( game => {
         if (game.id === payload){
           game.favourite = !game.favourite
-          if(game.favourite == true){
+          if(game.favourite === true){
             state.favouriteGames = [...state.favouriteGames, game]
           } else {
-            state.favouriteGames = [...state.favouriteGames.slice(0, index), ...state.favouriteGames.slice(index + 1)]
+            const index = state.favouriteGames.indexOf(game)
+            state.favouriteGames = [
+                ...state.favouriteGames.slice(0, index),
+                ...state.favouriteGames.slice(index + 1)
+            ]
           }
         }
         return game;
@@ -70,7 +85,7 @@ export default new Vuex.Store({
   getters: {
     getGameList(state) {
       return state.gameList.sort((a,b) => {
-          return a.value < b.value ? 1 : -1
+          return a.title > b.title ? 1 : -1
       })
     },
     getGame(state) {
