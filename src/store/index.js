@@ -55,14 +55,10 @@ export default new Vuex.Store({
         .database()
         .ref("games")
         .push(game)
-        .then(data => {
-          key = data.key;
-          return key
-        })
-        .then( key => {
+        .then( data => {
           const filename = payload.image.name
           const extention = filename.slice(filename.lastIndexOf('.'))
-          return firebase.storage().ref('games/' + key + '.' + extention).put(payload.image)
+          return firebase.storage().ref('games/' + data.key + '.' + extention).put(payload.image)
         })
         .then( fileData => {
           return fileData.ref.getDownloadURL()

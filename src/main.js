@@ -17,11 +17,11 @@ new Vue({
   render: h => h(App),
   created() {
     firebase.initializeApp({
-      apiKey: "lkfsnldnfl",
-      authDomain: "kfasjbkjfbakjbf",
-      databaseURL: "kasfjnfkljnaskl",
-      projectId: "zksjbfkjszbf",
-      storageBucket: "sjnfkjanfk"
+      apiKey: "AIzaSyA4KqMk9hNuTnFP85afQH64qxLcr5gLJmw",
+      authDomain: "puris-boardgames.firebaseapp.com",
+      databaseURL: "https://puris-boardgames.firebaseio.com",
+      projectId: "puris-boardgames",
+      storageBucket: "gs://puris-boardgames.appspot.com"
     });
     this.$store.dispatch("loadGames");
   }
