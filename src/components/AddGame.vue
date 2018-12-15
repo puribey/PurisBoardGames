@@ -57,7 +57,7 @@
                    <v-text-field
                    v-model="description"
                    id="description"
-                   label="Descrption"
+                   label="Description"
                    :rules="descriptionRules"
                    required
                    color="deep-purple lighten-2"></v-text-field>
@@ -69,8 +69,8 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="deep-purple lighten-2" flat @click="handleClickModal()">Close</v-btn>
-            <v-btn color="deep-purple lighten-2" flat @click="handleClickModal()" type="submit" :disabled="!formIsValid">Save</v-btn>
             <v-btn color="deep-purple lighten-2" flat @click="handleClickModal()" type="reset">Reset</v-btn>
+            <v-btn color="deep-purple lighten-2" flat @click="handleClickModal()" type="submit" :disabled="!formIsValid">Save</v-btn>
         </v-card-actions>
       </v-form>
     </v-card>
