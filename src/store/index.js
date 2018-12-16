@@ -11,16 +11,17 @@ export default new Vuex.Store({
   },
   mutations: {
     ADD_REMOVE_FAVOURITE(state, payload) {
-      const updatedFavourite = state.gameList.map((game, index) => {
+      const updatedFavourite = state.gameList.map(game => {
         if (game.id === payload) {
           game.favourite = !game.favourite;
           if (game.favourite == true) {
             state.favouriteGames = [...state.favouriteGames, game];
           } else {
+            const index = state.favouriteGames.indexOf(game)
             state.favouriteGames = [
-              ...state.favouriteGames.slice(0, index),
-              ...state.favouriteGames.slice(index + 1)
-            ];
+                ...state.favouriteGames.slice(0, index),
+                ...state.favouriteGames.slice(index + 1)
+            ]
           }
         }
         return game;
@@ -49,7 +50,7 @@ export default new Vuex.Store({
       };
       // Reach out to firebase and store it
       // push(add data) / set / update
-      let imageSRC 
+      let image 
       let key
       firebase
         .database()
@@ -58,19 +59,21 @@ export default new Vuex.Store({
         .then( data => {
           const filename = payload.image.name
           const extention = filename.slice(filename.lastIndexOf('.'))
-          return firebase.storage().ref('games/' + data.key + '.' + extention).put(payload.image)
+          key = data.key
+          return firebase.storage().ref('games/' + key + '.' + extention).put(payload.image)
         })
         .then( fileData => {
           return fileData.ref.getDownloadURL()
           .then( imageSRC => {
-            return firebase.database().ref('games').child(key).update({src: imageSRC})
+            image = imageSRC
+            return firebase.database().ref(`games/${key}/src`).set(image)
           })
-        })
-        .then(() => {
-          commit("CREATE_GAMECARD", {
-            ...game,
-            src: imageSRC,
-            id: key
+          .then(() => {
+            return commit("CREATE_GAMECARD", {
+              ...game,
+              src: image,
+              id: key
+            })
           })
         })
         .catch(error => {
@@ -84,7 +87,6 @@ export default new Vuex.Store({
         .ref("games")
         .once("value")
         .then(data => {
-          //console.log(data);
           const games = [];
           // I need to transform games data to have the shape I need for my database
           const obj = data.val(); // access to values in data

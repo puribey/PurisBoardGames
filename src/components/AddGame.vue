@@ -54,15 +54,6 @@
                    color="deep-purple lighten-2"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field 
-                    v-model="src"
-                    label="Image URL"
-                    id="src"
-                    required
-                    color="deep-purple lighten-2"
-                  ></v-text-field>
-                </v-flex>
-                <v-flex xs12>
                    <v-btn 
                       raised 
                       color="deep-purple lighten-2" 
