@@ -28,7 +28,18 @@
 * Diferencia entre [SDK y API](https://nordicapis.com/what-is-the-difference-between-an-api-and-an-sdk/)
 * [Real time database vs cloud firestore](https://savvyapps.com/blog/firebase-realtime-database-vs-cloud-firestore-for-your-app)
 
+## Firebase setup
+In order for this project to work, you need to set up a firebase realtime database and get your keys. They should look somewhat like this:
+```
+apiKey: "kjsndfnsfknksjfnksnkfn",
+authDomain: "name.firebaseapp.com",
+databaseURL: "https://name.firebaseio.com",
+projectId: "name",
+storageBucket: "gs://name.appspot.com"
+```
+
 ## Project setup
+Clone the repo and run:
 ```
 npm install
 ```
