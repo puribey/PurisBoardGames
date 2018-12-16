@@ -1,6 +1,20 @@
 <template>
 <v-container fluid grid-list-xl class="lateral">
-  <v-layout row wrap>
+  <v-layout>
+    <v-flex xs12 class="text-xs-center">
+      <v-progress-circular
+        :rotate="180"
+        :size="100"
+        :width="15"
+        :value="value"
+        v-if="loading"
+        color="deep-purple lighten-2"
+      >
+        {{ value }}
+      </v-progress-circular>
+    </v-flex>
+  </v-layout>
+  <v-layout row wrap v-if="!loading">
     <v-flex v-for="game in games" :key="game.id" xs12 sm3>
       <GameCard :gameProp="game"></GameCard>
     </v-flex>
@@ -34,12 +48,28 @@ export default {
   data() {
     return {
       favorite: false,
-      dialog: false
+      dialog: false,
+      interval: {},
+      value: 0
     }
+  },
+  beforeDestroy () {
+    clearInterval(this.interval)
+  },
+  mounted () {
+    this.interval = setInterval(() => {
+      if (this.value === 100) {
+        return (this.value = 0)
+      }
+      this.value += 10
+    }, 600)
   },
   computed: {
     games() {
       return this.$store.getters.getGameList
+    },
+    loading() {
+      return this.$store.getters.getLoader
     }
   },
   methods: {

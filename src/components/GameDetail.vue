@@ -7,9 +7,6 @@
       </v-flex>
       <v-flex xs12 sm6>
         <h3 class="display-3 deep-purple--text lighten-2 mb-3" >{{game.title}}</h3>
-        <p
-        class="subheading text-md-left"
-        >{{game.description}}</p>
       </v-flex>
       <v-flex xs12 sm6>
         <v-rating
@@ -21,17 +18,9 @@
           class="mb-4 mt-3"
           size="40"
         ></v-rating>
-        <!-- <v-expansion-panel inset> 
-          <v-expansion-panel-content
-            v-for="(detail,i) in game.details"
-            :key="i"
-          >
-            <div slot="header">{{i}}</div>
-            <v-card>
-              <v-card-text>{{detail}}</v-card-text>
-            </v-card>
-          </v-expansion-panel-content>
-        </v-expansion-panel> -->
+      </v-flex>
+      <v-flex xs12>
+        <p class="subheading text-md-left">{{game.description}}</p>
       </v-flex>
     </v-layout>
   </v-container>

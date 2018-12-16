@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     gameList: [],
-    favouriteGames: []
+    favouriteGames: [],
+    loading: false
   },
   mutations: {
     ADD_REMOVE_FAVOURITE(state, payload) {
@@ -33,6 +34,11 @@ export default new Vuex.Store({
     },
     SET_LOADED_GAMES(state, payload) {
       state.gameList = payload;
+    },
+    SET_LOADER(state, payload) {
+      // eslint-disable-next-line
+      console.log(state.loading)
+      state.loading = payload;
     }
   },
   actions: {
@@ -40,6 +46,7 @@ export default new Vuex.Store({
       commit("ADD_REMOVE_FAVOURITE", payload);
     },
     createGameCard({ commit }, payload) {
+      commit('SET_LOADER', true)
       const game = {
         favourite: false,
         title: payload.title,
@@ -69,6 +76,7 @@ export default new Vuex.Store({
             return firebase.database().ref(`games/${key}/src`).set(image)
           })
           .then(() => {
+            commit('SET_LOADER', false)
             return commit("CREATE_GAMECARD", {
               ...game,
               src: image,
@@ -77,11 +85,13 @@ export default new Vuex.Store({
           })
         })
         .catch(error => {
+          commit('SET_LOADER', true)
           return error;
         });
     },
     // will call this games in main.js where I load my games
     loadGames({ commit }) {
+      commit('SET_LOADER', true)
       firebase
         .database()
         .ref("games")
@@ -103,8 +113,10 @@ export default new Vuex.Store({
             });
           }
           commit("SET_LOADED_GAMES", games);
+          commit('SET_LOADER', false)
         })
         .catch(error => {
+          commit('SET_LOADER', true)
           return error
         });
     }
@@ -124,6 +136,9 @@ export default new Vuex.Store({
     },
     getFavouriteGames(state) {
       return state.favouriteGames;
+    },
+    getLoader(state) {
+      return state.loading;
     }
   }
 });
