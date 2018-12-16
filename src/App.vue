@@ -36,9 +36,6 @@
       <v-toolbar-title v-text="title"></v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <!--<v-slide-y-transition>
-      <router-view></router-view>
-      </v-slide-y-transition>-->
       <v-slide-x-transition mode="out-in">
         <router-view> </router-view>
       </v-slide-x-transition>
